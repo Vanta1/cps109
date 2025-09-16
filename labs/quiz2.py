@@ -5,5 +5,5 @@ for n in range(2,11):
         print(n)
         prime = False
 
-if not prime:
+if prime:
     print("This number has no factors between 2 and 10.")
