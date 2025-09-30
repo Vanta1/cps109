@@ -23,7 +23,7 @@ def sumeven(n):
 
     '''
 
-    # by observing: 0, 2, 6, 12, 20, 30, i figured out that the answer is just:
+    # by observing: 0, 2, 6, 12, 20, 30, (the expected outputs for n on [0,5]) i figured out that the answer is just:
     return n * (n - 1)
 
 
@@ -137,12 +137,15 @@ def digitcat(s):
 
     '''
 
-    f = 0
-    a = 0
-    for c in s[::-1]: # reverse the string
-        if re.search('0-9', c) != None:
+    a = 0 # answer
+    f = 0 # tally of found digits
+    for c in s[::-1]: # reverse the string, so that digits are processed starting from the 1s column
+        if c in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
             a += int(c) * (10 ** f)
             f += 1
+
+    if a == 0:
+        return None
 
     return a
 

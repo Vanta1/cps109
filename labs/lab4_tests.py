@@ -3,7 +3,7 @@ import unittest
 import lab4_funcs
 
 class TestLab4(unittest.TestCase):
-    
+
     def test_sum_even_positive_1(self):
         self.assertEqual(lab4_funcs.sumeven(6), 30)  # 2 + 4 + 6 + 8 + 10 = 30
     def test_sum_even_positive_2(self):
@@ -102,7 +102,7 @@ class TestLab4(unittest.TestCase):
         self.assertEqual(lab4_funcs.maxbytype([3, 1.5, 'apple', 4.2, 'banana']), (3, 4.2, 'banana'))
     def test_maxbytype_empty_input(self):
         self.assertEqual(lab4_funcs.maxbytype([]), (None, None, None))
-    def test_maxbytype_mixed_types_with_none(self):
+    def test_maxbytype_mixed_typeswith_none(self):
         self.assertEqual(lab4_funcs.maxbytype([3, 1.5, None, 4.2, 'banana']), (3, 4.2, 'banana'))
     def test_maxbytype_mixed_types_with_none(self):
         mixed_input_with_none = list(range(1000)) + [3.14, 1.0, 4.2] + [None, 'banana', 'cherry']
@@ -114,5 +114,3 @@ class TestLab4(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(exit=True)
-
-    
