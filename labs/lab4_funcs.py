@@ -1,4 +1,5 @@
 import re, sys
+from types import NoneType
 
 # --------------------------------------------------------------
 # 1) Summing Evens
@@ -47,8 +48,6 @@ def sumsquares(n):
     own code you wrote previously!
 
     '''
-
-    # 0: 1, 1: 5, 2: 14, 3: 29, 4: 55
 
     t = 0
     for i in range(n):
@@ -218,25 +217,28 @@ def maxbytype(items):
 
     '''
 
-    s = ""
-    i = -sys.maxsize
-    f = sys.float_info.min
+    # finding out python has type declaration like rust makes me so happy,
+    # also i hope it adequately clarifies what's going on here.
+    # i wont deny the code below is an abomination but i wanted to see how few
+    # if statements were necessary while following the
+    # oddly stringent rules around None types used in this course. (no shade (idek if anyone reads these))
+    o: list[int | float | str | None] = [None, None, None]
     for e in items:
-        if type(e) is str:
-            if s < e:
-                s = e
-        elif type(e) is int:
-            if i < e:
-                i = e
+        if type(e) is int:
+            if type(o[0]) == NoneType:
+                o[0] = e
+                continue
+            # rejoiced about python's type system too soon
+            o[0] = max(e, o[0]) # type: ignore
         elif type(e) is float:
-            if f < e:
-                f = e
+            if type(o[1]) == NoneType:
+                o[1] = e
+                continue
+            o[1] = max(e, o[1]) # type: ignore
+        elif type(e) is str:
+            if type(o[2]) == NoneType:
+                o[2] = e
+                continue
+            o[2] = max(e, o[2]) # type: ignore
 
-    if s == "":
-        s = None
-    if i == -sys.maxsize:
-        i = None
-    if f == sys.float_info.min:
-        f = None
-
-    return (i, f, s)
+    return tuple(o)
